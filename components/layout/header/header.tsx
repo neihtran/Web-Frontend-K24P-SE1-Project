@@ -90,45 +90,9 @@ export default function Header() {
               </button>
 
               {/* USER DROPDOWN */}
-<div className="relative">
-  <button
-    onClick={() => setIsUserOpen((prev) => !prev)}
-    className="hover:text-pink-600"
-  >
-    <User className="w-6 h-6" />
-  </button>
-
-  {isUserOpen && (
-    <div className="absolute right-0 mt-2 w-48 bg-white border rounded-md shadow-lg z-50">
-      {isLoggedIn ? (
-        <>
-          <div className="px-4 py-2 text-sm text-gray-500 border-b">
-            {email}
-          </div>
-          <LogoutButton />
-        </>
-      ) : (
-        <>
-          <Link
-            href="/login"
-            className="block px-4 py-2 text-sm hover:bg-gray-50"
-            onClick={() => setIsUserOpen(false)}
-          >
-            Login
-          </Link>
-          <Link
-            href="/register"
-            className="block px-4 py-2 text-sm hover:bg-gray-50"
-            onClick={() => setIsUserOpen(false)}
-          >
-            Register
-          </Link>
-        </>
-      )}
-    </div>
-  )}
-</div>
-
+                <Link href="/auth" className="hover:text-pink-600">
+                  <User className="w-6 h-6" />
+                </Link>
 
               {/* Wishlist */}
               <Link href="/wishlist" className="relative hover:text-pink-600">

@@ -8,6 +8,7 @@ import { Product } from '@/types';
 import RatingStars from '@/components/shared/rating-stars';
 import { useCart } from '@/components/cart/cart-summary';
 import { useWishlist } from '@/components/wishlist/wishlist-context';
+import { Button } from '../ui/button';
 
 interface ProductCardProps {
   product: Product;
@@ -55,31 +56,31 @@ export default function ProductCard({ product }: ProductCardProps) {
           isHovered ? 'opacity-100' : 'opacity-0'
         }`}
       >
-        {/* ❤️ Wishlist */}
-        <button
+        {/* Wishlist */}
+        <Button
           onClick={() => toggleWishlist(product)}
           className={`w-10 h-10 rounded-full flex items-center justify-center transition-colors
             ${
               liked
                 ? 'bg-pink-600 text-white'
-                : 'bg-white hover:bg-gray-900 hover:text-white'
+                : 'bg-black hover:bg-pink-600 hover:text-white'
             }`}
         >
           <Heart className="w-5 h-5" />
-        </button>
+        </Button>
 
-        {/* 👁 View */}
-        <button className="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-gray-900 hover:text-white transition-colors">
+        {/* View */}
+        <Button className="w-10 h-10 bg-black rounded-full flex items-center justify-center hover:bg-pink-600 hover:text-white transition-colors">
           <Eye className="w-5 h-5" />
-        </button>
+        </Button>
 
-        {/* 🛒 Add to Cart */}
-        <button 
+        {/* Add to Cart */}
+        <Button 
           onClick={() => addToCart(product)}
-          className="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-pink-600 hover:text-white transition-colors"
+          className="w-10 h-10 bg-black rounded-full flex items-center justify-center hover:bg-pink-600 hover:text-white transition-colors"
         >
           <ShoppingCart className="w-5 h-5" />
-        </button>
+        </Button>
       </div>
 
       {/* Product Info */}

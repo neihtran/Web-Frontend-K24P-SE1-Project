@@ -24,12 +24,13 @@ export default function RegisterForm() {
   const onSubmit = async (data: RegisterForm) => {
     try {
       await axiosClient.post('/api/auth/register', {
+        username: data.username,
         email: data.email,
         password: data.password,
       });
 
       alert('Đăng ký thành công, vui lòng đăng nhập');
-      router.push('/login');
+      router.push('/auth');
     } catch (err: any) {
       alert(err.response?.data?.message || 'Đăng ký thất bại');
     }
@@ -42,6 +43,21 @@ export default function RegisterForm() {
     >
       <h1 className="text-2xl font-bold">Register</h1>
 
+      {/* USERNAME */}
+      <div>
+        <input
+          {...register('username')}
+          placeholder="Username"
+          className="w-full border p-2 rounded"
+        />
+        {errors.username && (
+          <p className="text-red-500 text-sm">
+            {errors.username.message}
+          </p>
+        )}
+      </div>
+
+      {/* EMAIL */}
       <div>
         <input
           {...register('email')}
@@ -49,10 +65,13 @@ export default function RegisterForm() {
           className="w-full border p-2 rounded"
         />
         {errors.email && (
-          <p className="text-red-500 text-sm">{errors.email.message}</p>
+          <p className="text-red-500 text-sm">
+            {errors.email.message}
+          </p>
         )}
       </div>
 
+      {/* PASSWORD */}
       <div>
         <input
           type="password"
@@ -67,6 +86,7 @@ export default function RegisterForm() {
         )}
       </div>
 
+      {/* CONFIRM PASSWORD */}
       <div>
         <input
           type="password"

@@ -5,7 +5,7 @@ import { User } from '@/lib/models/User';
 
 export async function POST(req: Request) {
   try {
-    const { email, password } = await req.json();
+    const { username, email, password } = await req.json();
     await connectDB();
 
     const existed = await User.findOne({ email });
@@ -17,7 +17,7 @@ export async function POST(req: Request) {
     }
 
     const hashed = await bcrypt.hash(password, 10);
-    await User.create({ email, password: hashed });
+    await User.create({ username, email, password: hashed });
 
     return NextResponse.json({ message: 'Đăng ký thành công' });
   } catch {

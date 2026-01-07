@@ -72,7 +72,7 @@ export default function LoginForm() {
         Login
       </button>
       <p className="text-sm text-center">
-        Don&apos;t have an account?{' '}
+        Don't have an account?{' '}
         <Link href="/register" className="underline">
             Register
         </Link>
