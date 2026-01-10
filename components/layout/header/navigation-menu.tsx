@@ -13,18 +13,18 @@ export default function NavigationMenu() {
     {
       label: 'Home',
       dropdown: [
-        { label: 'Wooden Home', href: '/' },
-        { label: 'Fashion Home', href: '/index-2' },
-        { label: 'Furniture Home', href: '/index-3' },
-        { label: 'Cosmetics Home', href: '/index-4' },
-        { label: 'Food Grocery', href: '/index-5' },
+        { label: 'Wooden Home', href: '/shop' },
+        { label: 'Fashion Home', href: '/shop' },
+        { label: 'Furniture Home', href: '/shop' },
+        { label: 'Cosmetics Home', href: '/shop' },
+        { label: 'Food Grocery', href: '/shop' },
       ],
     },
     {
       label: 'Shop',
       dropdown: [
         { label: 'Shop', href: '/shop' },
-        { label: 'Shop 2', href: '/shop-2' },
+        { label: 'Shop 2', href: '/shop' },
         { label: 'Shop Details', href: '/shop-details' },
         { label: 'Cart', href: '/cart' },
       ],

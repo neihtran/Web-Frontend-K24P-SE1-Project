@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/components/cart/cart-summary";
 import { useWishlist } from "@/components/wishlist/wishlist-context";
+import { Input } from "../ui/input";
 
 export function WishlistRow({ item }: { item: any }) {
   const { addToCart } = useCart();
@@ -26,7 +27,7 @@ export function WishlistRow({ item }: { item: any }) {
       <td className="p-4">${item.price}</td>
 
       <td className="p-4">
-        <input
+        <Input
           type="number"
           value={1}
           disabled

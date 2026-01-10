@@ -1,5 +1,3 @@
-// components/home/deal-section.tsx
-
 'use client';
 
 import { useEffect, useState } from 'react';

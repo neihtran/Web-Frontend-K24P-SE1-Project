@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { X } from 'lucide-react';
+import { Button } from '../ui/button';
 
 export interface CartItemType {
   id: string;
@@ -26,12 +27,12 @@ export default function CartItem({
   return (
     <div className="flex gap-4 py-4 border-b">
      
-      <button
+      <Button
         onClick={() => onRemove(item.id)}
         className="flex-shrink-0 w-6 h-6 rounded-full border-2 border-pink-600 text-pink-600 flex items-center justify-center hover:bg-pink-600 hover:text-white transition-colors"
       >
         <X className="w-4 h-4" />
-      </button>
+      </Button>
 
  
       <div className="relative w-20 h-20 flex-shrink-0">

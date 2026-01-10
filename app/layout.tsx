@@ -27,12 +27,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} min-h-screen flex flex-col`}>
+      <body className={`${inter.className} min-h-screen flex flex-col overflow-x-hidden`}>
         <CartProvider>
           <WishlistProvider>
             <TopBar />
             <Header />
-            <main className="bg-gray-50 flex-1">{children}</main>
+            <main className="bg-gray-50 flex-1 w-full overflow-x-hidden">
+              <div className="max-w-7xl mx-auto px-4">
+                {children}
+              </div>
+            </main>
             <Footer />
             <Toaster position="top-right" />
           </WishlistProvider>

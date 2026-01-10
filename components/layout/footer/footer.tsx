@@ -1,16 +1,14 @@
-// components/layout/footer.tsx
-
 import Link from 'next/link';
 import Image from 'next/image';
 import { Phone } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-gray-300">
+    <footer className="bg-gray-900 text-gray-300 w-full">
 
-      <div className="container mx-auto px-4 py-12">
+      <div className="max-w-7xl mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          
     
           <div>
             <Link href="/">
@@ -26,7 +24,6 @@ export default function Footer() {
               Turning Passion into Career – VTC Academy
             </p>
           </div>
-
 
           <div>
             <h4 className="text-white font-semibold mb-4">Information</h4>
@@ -63,9 +60,9 @@ export default function Footer() {
                 placeholder="Your email"
                 className="flex-1 px-4 py-2 rounded bg-gray-800 text-white border border-gray-700 focus:outline-none focus:border-gray-600"
               />
-              <button className="px-6 py-2 bg-white text-gray-900 rounded font-medium hover:bg-gray-100">
+              <Button className="px-6 py-2 bg-white text-gray-900 rounded font-medium hover:bg-gray-100">
                 Subscribe
-              </button>
+              </Button>
             </form>
           </div>
         </div>
