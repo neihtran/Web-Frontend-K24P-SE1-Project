@@ -16,6 +16,7 @@ import { useWishlist } from '@/components/wishlist/wishlist-context';
 import CartSidebar from '@/components/cart/mini-cart';
 import LogoutButton from '@/components/auth/logout-button';
 import { useAuth } from '@/lib/use-auth';
+import { Input } from '@/components/ui/input';
 
 
 export default function Header() {
@@ -24,7 +25,7 @@ export default function Header() {
   const [isUserOpen, setIsUserOpen] = useState(false);
   const { getTotalItems } = useCart();
   const { items: wishlistItems } = useWishlist();
-  const { isLoggedIn, email } = useAuth(); 
+  const { isLoggedIn, user } = useAuth(); 
 
   return (
     <>
@@ -46,7 +47,7 @@ export default function Header() {
             <div className="hidden md:flex flex-1 max-w-2xl">
               <div className="relative w-full">
                 <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-                <input
+                <Input
                   type="text"
                   placeholder="Search products..."
                   value={searchQuery}
@@ -89,10 +90,10 @@ export default function Header() {
                 )}
               </button>
 
-              {/* USER DROPDOWN */}
-                <Link href="/auth" className="hover:text-pink-600">
-                  <User className="w-6 h-6" />
-                </Link>
+              {/* USER */}
+              <Link href="/auth" className="hover:text-pink-600">
+                <User className="w-6 h-6" />
+              </Link>
 
               {/* Wishlist */}
               <Link href="/wishlist" className="relative hover:text-pink-600">
