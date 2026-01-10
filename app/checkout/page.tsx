@@ -15,16 +15,16 @@ export default function CheckoutPage() {
   const { isLoggedIn, isReady } = useAuth();
   const { cart } = useCart();
 
-  // 🔐 Chưa login → về login
+  // login → auth
   useEffect(() => {
   if (!isReady) return;
 
   if (!isLoggedIn) {
-    router.replace('/login');
+    router.replace('/auth');
   }
 }, [isLoggedIn, isReady, router]);
 
-  // 🛒 Cart rỗng → về cart
+  // Cart empty
   useEffect(() => {
     if (cart.length === 0) {
       router.replace('/cart');

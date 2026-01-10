@@ -4,8 +4,8 @@ import { WishlistRow } from "./wishlist-row";
 export function WishlistTable({ items }: { items: any[] }) {
   return (
     <div className="overflow-x-auto bg-white rounded-lg shadow-sm">
-      <table className="w-full text-sm">
-        <thead className="border-b bg-gray-50">
+      <table className="w-full text-sm border">
+        <thead className="bg-gray-50 border-b">
           <tr className="text-left">
             <th className="p-4">Images</th>
             <th className="p-4">Courses</th>

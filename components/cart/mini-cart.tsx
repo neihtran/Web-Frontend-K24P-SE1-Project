@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { X } from 'lucide-react';
 import { useCart } from '@/components/cart/cart-summary';
 import CartItem from '@/components/cart/cart-item'
+import { Button } from '../ui/button';
 
 
 interface CartSidebarProps {
@@ -33,12 +34,12 @@ export default function CartSidebar({ isOpen, onClose }: CartSidebarProps) {
       >
         <div className="flex items-center justify-between px-6 py-4 border-b flex-shrink-0">
           <h2 className="text-xl font-bold text-gray-900">YOUR CART</h2>
-          <button
+          <Button
             onClick={onClose}
-            className="p-2 hover:bg-gray-100 rounded-full transition-colors"
+            className="p-2 hover:bg-pink-600 rounded-full transition-colors"
           >
             <X className="w-6 h-6" />
-          </button>
+          </Button>
         </div>
 
  

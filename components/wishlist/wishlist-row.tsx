@@ -4,7 +4,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/components/cart/cart-summary";
 import { useWishlist } from "@/components/wishlist/wishlist-context";
-import { Input } from "../ui/input";
+import { Input } from "@/components/ui/input";
 
 export function WishlistRow({ item }: { item: any }) {
   const { addToCart } = useCart();
@@ -12,31 +12,44 @@ export function WishlistRow({ item }: { item: any }) {
 
   return (
     <tr className="border-b last:border-0">
+      {/* IMAGE */}
       <td className="p-4">
-        <Image
-          src={item.image}
-          alt={item.name}
-          width={70}
-          height={70}
-          className="rounded-md"
-        />
+        <div className="w-20 h-20 relative">
+          <Image
+            src={item.image}
+            alt={item.name}
+            fill
+            className="object-cover rounded-md"
+          />
+        </div>
       </td>
 
-      <td className="p-4 font-medium">{item.name}</td>
+      {/* NAME */}
+      <td className="p-4 font-medium">
+        {item.name}
+      </td>
 
-      <td className="p-4">${item.price}</td>
+      {/* PRICE */}
+      <td className="p-4">
+        ${item.price}
+      </td>
 
+      {/* QUANTITY */}
       <td className="p-4">
         <Input
           type="number"
           value={1}
           disabled
-          className="w-16 h-10 border rounded-md text-center bg-gray-50"
+          className="w-16 h-10 text-center bg-gray-50"
         />
       </td>
 
-      <td className="p-4 font-medium">${item.price}</td>
+      {/* TOTAL */}
+      <td className="p-4 font-medium">
+        ${item.price}
+      </td>
 
+      {/* ADD TO CART */}
       <td className="p-4">
         <Button
           onClick={() => addToCart(item)}
@@ -46,6 +59,7 @@ export function WishlistRow({ item }: { item: any }) {
         </Button>
       </td>
 
+      {/* REMOVE */}
       <td className="p-4">
         <button
           onClick={() => toggleWishlist(item)}

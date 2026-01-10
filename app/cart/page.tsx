@@ -1,128 +1,181 @@
 'use client';
 
-import Image from 'next/image';
-import Link from 'next/link';
-import { Trash2 } from 'lucide-react';
+import Image from "next/image";
+import Link from "next/link";
+import { Trash2 } from "lucide-react";
 
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Separator } from '@/components/ui/separator';
+import { useCart } from "@/components/cart/cart-summary";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
-import { useCart } from '@/components/cart/cart-summary';
-
-export default function CheckoutCartPage() {
-  const { cart, removeFromCart, getTotalPrice } = useCart();
-
-
-  if (cart.length === 0) {
-    return (
-      <div className="container mx-auto px-4 py-24 text-center">
-        <h1 className="text-3xl font-bold mb-4">Your Cart</h1>
-        <p className="text-gray-500 mb-8">
-          Your shopping cart is empty
-        </p>
-
-        <Button asChild>
-          <Link href="/shop">Continue Shopping</Link>
-        </Button>
-      </div>
-    );
-  }
+export default function CartPage() {
+  const {
+    cart,
+    removeFromCart,
+    updateQuantity,
+    getTotalPrice,
+  } = useCart();
 
   return (
-    <div className="container mx-auto px-4 py-16">
-      <h1 className="text-3xl font-bold mb-10">Shopping Cart</h1>
+    <>
+      {/* PAGE HEADER */}
+      <section className="bg-gray-100">
+        <div className="max-w-7xl mx-auto px-4 py-12">
+          <nav className="text-sm text-gray-500 mb-2">
+            <Link href="/" className="hover:text-black">
+              Home
+            </Link>
+            <span className="mx-2">—</span>
+            <span className="text-gray-900">Cart</span>
+          </nav>
+          <h1 className="text-3xl font-bold">Cart</h1>
+        </div>
+      </section>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
+      {/* CONTENT */}
+      <div className="max-w-7xl mx-auto px-4 py-16">
+        {cart.length === 0 ? (
+          <div className="text-center py-20">
+            <p className="text-gray-500 mb-6">
+              Your cart is currently empty.
+            </p>
+            <Button asChild>
+              <Link href="/shop">Return to Shop</Link>
+            </Button>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+            {/* CART TABLE */}
+            <div className="lg:col-span-2 overflow-x-auto">
+              <table className="w-full border text-sm">
+                <thead className="bg-gray-50">
+                  <tr className="border-b">
+                    <th className="p-4 text-left">Images</th>
+                    <th className="p-4 text-left">Courses</th>
+                    <th className="p-4 text-left">Unit Price</th>
+                    <th className="p-4 text-left">Quantity</th>
+                    <th className="p-4 text-left">Total</th>
+                    <th className="p-4 text-center">Remove</th>
+                  </tr>
+                </thead>
 
-        <div className="lg:col-span-2 space-y-6">
-          {cart.map((item) => (
-            <Card key={item.id}>
-              <CardContent className="p-6 flex gap-6 items-center">
-             
-                <div className="relative w-24 h-24 flex-shrink-0">
-                  <Image
-                    src={item.image}
-                    alt={item.name}
-                    fill
-                    className="object-cover rounded-md"
-                  />
-                </div>
+                <tbody>
+                  {cart.map((item) => (
+                    <tr key={item.id} className="border-b">
+                      {/* IMAGE */}
+                      <td className="p-4">
+                        <div className="relative w-20 h-20">
+                          <Image
+                            src={item.image}
+                            alt={item.name}
+                            fill
+                            className="object-cover rounded"
+                          />
+                        </div>
+                      </td>
 
-                <div className="flex-1 min-w-0">
-                  <Link
-                    href="/shop-details"
-                    className="font-semibold text-lg hover:text-pink-600 line-clamp-2"
-                  >
-                    {item.name}
-                  </Link>
+                      {/* NAME */}
+                      <td className="p-4">
+                        <Link
+                          href="/shop-details"
+                          className="hover:text-pink-600"
+                        >
+                          {item.name}
+                        </Link>
+                      </td>
 
-                  <p className="text-sm text-gray-500 mt-1">
-                    Quantity:{' '}
-                    <span className="font-medium">
-                      {item.quantity}
-                    </span>
-                  </p>
+                      {/* PRICE */}
+                      <td className="p-4">
+                        ${item.price.toFixed(2)}
+                      </td>
 
-                  <p className="text-pink-600 font-bold mt-2">
-                    ${item.price.toFixed(2)}
-                  </p>
-                </div>
+                      {/* QUANTITY */}
+                      <td className="p-4">
+                        <Input
+                          type="number"
+                          min={1}
+                          value={item.quantity}
+                          onChange={(e) =>
+                            updateQuantity(
+                              item.id,
+                              Number(e.target.value)
+                            )
+                          }
+                          className="w-20"
+                        />
+                      </td>
 
-         
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={() => removeFromCart(item.id)}
-                >
-                  <Trash2 className="w-5 h-5 text-gray-500 hover:text-red-500" />
+                      {/* TOTAL */}
+                      <td className="p-4 font-medium">
+                        ${(item.price * item.quantity).toFixed(2)}
+                      </td>
+
+                      {/* REMOVE */}
+                      <td className="p-4 text-center">
+                        <Button
+                          onClick={() => removeFromCart(item.id)}
+                          className="text-gray-500 hover:text-red-500"
+                        >
+                          <Trash2 className="w-5 h-5" />
+                        </Button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+
+              {/* COUPON */}
+              <div className="flex flex-wrap gap-4 mt-6">
+                <Input
+                  placeholder="Coupon code"
+                  className="w-48"
+                />
+                <Button className="bg-pink-600 hover:bg-pink-700">
+                  Apply Coupon
                 </Button>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
 
-        <div>
-          <Card>
-            <CardHeader>
-              <CardTitle>Order Summary</CardTitle>
-            </CardHeader>
+                <div className="flex-1" />
 
-            <CardContent className="space-y-4">
-              <div className="flex justify-between text-gray-600">
-                <span>Subtotal</span>
-                <span>${getTotalPrice().toFixed(2)}</span>
+                <Button variant="outline">
+                  Update cart
+                </Button>
               </div>
+            </div>
 
-              <div className="flex justify-between text-gray-600">
-                <span>Shipping</span>
-                <span>Free</span>
+            {/* CART TOTALS */}
+            <div>
+              <div className="border p-6">
+                <h2 className="text-lg font-semibold mb-6">
+                  Cart Totals
+                </h2>
+
+                <div className="flex justify-between border-b pb-3 mb-3">
+                  <span>Subtotal</span>
+                  <span>
+                    ${getTotalPrice().toFixed(2)}
+                  </span>
+                </div>
+
+                <div className="flex justify-between font-semibold mb-6">
+                  <span>Total</span>
+                  <span>
+                    ${getTotalPrice().toFixed(2)}
+                  </span>
+                </div>
+
+                <Button
+                  className="w-full bg-pink-600 hover:bg-pink-700"
+                  asChild
+                >
+                  <Link href="/checkout">
+                    Proceed to Checkout
+                  </Link>
+                </Button>
               </div>
-
-              <Separator />
-
-              <div className="flex justify-between text-lg font-bold">
-                <span>Total</span>
-                <span className="text-pink-600">
-                  ${getTotalPrice().toFixed(2)}
-                </span>
-              </div>
-
-              <Button className="w-full mt-4" asChild>
-                <Link href="/checkout">Proceed to Checkout</Link>
-              </Button>
-
-              <Button
-                variant="outline"
-                className="w-full"
-                asChild
-              >
-                <Link href="/shop">Continue Shopping</Link>
-              </Button>
-            </CardContent>
-          </Card>
-        </div>
+            </div>
+          </div>
+        )}
       </div>
-    </div>
+    </>
   );
 }

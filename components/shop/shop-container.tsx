@@ -32,8 +32,8 @@ export default function ShopContainer() {
       return (
         (category === "all" || p.category === category) &&
         p.price >= price[0] &&
-        (colors.length === 0 || colors.includes(p.color ?? "")) &&
-        (brands.length === 0 || brands.includes(p.brand ?? "")) &&
+        // (colors.length === 0 || colors.includes(p.color ?? "")) &&
+        // (brands.length === 0 || brands.includes(p.brand ?? "")) &&
         p.name.toLowerCase().includes(search.toLowerCase())
       );
     });

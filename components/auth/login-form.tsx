@@ -7,6 +7,8 @@ import { z } from 'zod';
 import axiosClient from '@/lib/axios';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { Button } from '../ui/button';
+import { Input } from '../ui/input';
 
 type LoginForm = z.infer<typeof loginSchema>;
 
@@ -20,18 +22,37 @@ export default function LoginForm() {
     resolver: zodResolver(loginSchema),
   });
 
-  const onSubmit = async (data: LoginForm) => {
-    try {
-      await axiosClient.post('/api/auth/login', data);
-      localStorage.setItem('isLoggedIn', 'true');
-      localStorage.setItem('userEmail', data.email);
+const onSubmit = async (data: LoginForm) => {
+  try {
+    let username = data.email;
 
-      window.dispatchEvent(new Event('auth-change'));
-      router.push('/');
-    } catch (err: any) {
-      alert(err.response?.data?.message || 'Login failed');
+    // email → user demo
+    if (data.email.includes('@')) {
+      if (data.email !== 'emily@example.com') {
+        alert('Sai tài khoản hoặc mật khẩu');
+        return;
+      }
+      username = 'emilys';
     }
-  };
+
+    const res = await axiosClient.post('/auth/login', {
+      username,
+      password: data.password,
+    });
+
+    const { accessToken, refreshToken } = res.data;
+
+    localStorage.setItem('accessToken', accessToken);
+    localStorage.setItem('refreshToken', refreshToken);
+
+    window.dispatchEvent(new Event('auth-change'));
+
+    // redirect reset layout
+    window.location.href = '/';
+  } catch {
+    alert('Sai tài khoản hoặc mật khẩu');
+  }
+};
 
   return (
     <form
@@ -39,11 +60,10 @@ export default function LoginForm() {
       className="w-full max-w-md space-y-4"
     >
       <h1 className="text-2xl font-bold">Login</h1>
-
       <div>
-        <input
+        <Input
           {...register('email')}
-          placeholder="Email"
+          placeholder="Username"
           className="w-full border p-2 rounded"
         />
         {errors.email && (
@@ -52,7 +72,7 @@ export default function LoginForm() {
       </div>
 
       <div>
-        <input
+        <Input
           type="password"
           {...register('password')}
           placeholder="Password"
@@ -65,12 +85,12 @@ export default function LoginForm() {
         )}
       </div>
 
-      <button
+      <Button
         disabled={isSubmitting}
         className="w-full bg-black text-white py-2 rounded"
       >
         Login
-      </button>
+      </Button>
       <p className="text-sm text-center">
         Don't have an account?{' '}
         <Link href="/register" className="underline">

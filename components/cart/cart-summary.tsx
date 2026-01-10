@@ -25,7 +25,7 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 export function CartProvider({ children }: { children: ReactNode }) {
   const [cart, setCart] = useState<CartItem[]>([]);
 
-  // Load cart từ localStorage khi mount
+  // Load cart localStorage
   useEffect(() => {
     const savedCart = localStorage.getItem('cart');
     if (savedCart) {
@@ -33,12 +33,12 @@ export function CartProvider({ children }: { children: ReactNode }) {
     }
   }, []);
 
-  // Save cart vào localStorage khi thay đổi
+  // Update cart localstorage
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cart));
   }, [cart]);
 
-  // Thêm sản phẩm vào giỏ hàng
+  // Add product
   const addToCart = (product: Product) => {
     setCart((prevCart) => {
       const existingItem = prevCart.find((item) => item.id === product.id);
@@ -59,13 +59,13 @@ export function CartProvider({ children }: { children: ReactNode }) {
     });
   };
 
-  // Xóa sản phẩm khỏi giỏ hàng
+  // Delete cảt
   const removeFromCart = (productId: number) => {
     setCart((prevCart) => prevCart.filter((item) => item.id !== productId));
     toast.success('Removed from cart!');
   };
 
-  // Cập nhật số lượng
+  // Update cart
   const updateQuantity = (productId: number, quantity: number) => {
     if (quantity <= 0) {
       removeFromCart(productId);

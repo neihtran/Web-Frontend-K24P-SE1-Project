@@ -7,6 +7,8 @@ import { z } from 'zod';
 import axiosClient from '@/lib/axios';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { Button } from '../ui/button';
+import { Input } from '../ui/input';
 
 type RegisterForm = z.infer<typeof registerSchema>;
 
@@ -21,20 +23,22 @@ export default function RegisterForm() {
     resolver: zodResolver(registerSchema),
   });
 
-  const onSubmit = async (data: RegisterForm) => {
-    try {
-      await axiosClient.post('/api/auth/register', {
-        username: data.username,
-        email: data.email,
-        password: data.password,
-      });
+const onSubmit = async (data: RegisterForm) => {
+  try {
+    await axiosClient.post('/users/add', {
+      firstName: data.username,
+      lastName: 'User',
+      username: data.username,
+      password: data.password,
+      email: data.email,
+      gender: 'male',
+    });
 
-      alert('Đăng ký thành công, vui lòng đăng nhập');
-      router.push('/auth');
-    } catch (err: any) {
-      alert(err.response?.data?.message || 'Đăng ký thất bại');
-    }
-  };
+    alert('Đăng ký thành công. Vui lòng đăng nhập.');
+  } catch {
+    alert('Đăng ký thất bại');
+  }
+};
 
   return (
     <form
@@ -45,7 +49,7 @@ export default function RegisterForm() {
 
       {/* USERNAME */}
       <div>
-        <input
+        <Input
           {...register('username')}
           placeholder="Username"
           className="w-full border p-2 rounded"
@@ -59,7 +63,7 @@ export default function RegisterForm() {
 
       {/* EMAIL */}
       <div>
-        <input
+        <Input
           {...register('email')}
           placeholder="Email"
           className="w-full border p-2 rounded"
@@ -88,7 +92,7 @@ export default function RegisterForm() {
 
       {/* CONFIRM PASSWORD */}
       <div>
-        <input
+        <Input
           type="password"
           {...register('confirmPassword')}
           placeholder="Confirm Password"
@@ -101,12 +105,12 @@ export default function RegisterForm() {
         )}
       </div>
 
-      <button
+      <Button
         disabled={isSubmitting}
         className="w-full bg-black text-white py-2 rounded"
       >
         Register
-      </button>
+      </Button>
 
       <p className="text-sm text-center">
         Already have an account?{' '}
