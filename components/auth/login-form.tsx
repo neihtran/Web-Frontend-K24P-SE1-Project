@@ -63,7 +63,7 @@ const onSubmit = async (data: LoginForm) => {
       <div>
         <Input
           {...register('email')}
-          placeholder="Username"
+          placeholder="Username/Email"
           className="w-full border p-2 rounded"
         />
         {errors.email && (
