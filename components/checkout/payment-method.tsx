@@ -36,7 +36,11 @@ export default function PaymentMethod() {
         </AccordionItem>
       </Accordion>
 
-      <Button className="w-full bg-red-600 hover:bg-red-700">
+      <Button
+        type="submit"
+        form="billing-form"
+        className="w-full bg-red-600"
+      >
         Place order
       </Button>
     </div>

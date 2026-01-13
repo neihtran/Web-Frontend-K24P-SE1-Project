@@ -1,5 +1,3 @@
-// components/layout/category-sidebar.tsx
-
 import Link from 'next/link';
 import { Menu, Flame, Gift, Droplet, Crown, Gem } from 'lucide-react';
 
@@ -33,7 +31,6 @@ export default function CategorySidebar() {
           </Link>
         ))}
       </div>
-
 
       <div className="border-t py-2">
         <Link href="/shop" className="block px-6 py-3 hover:bg-gray-50 hover:text-pink-600 font-medium">

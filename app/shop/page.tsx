@@ -15,8 +15,6 @@ export default function ShopPage() {
           <h1 className="text-3xl font-bold">Shop</h1>
         </div>
       </section>
-
-      {/* SHOP LOGIC */}
       <ShopContainer />
     </>
   );

@@ -6,6 +6,7 @@ import ProductGrid from "@/components/product/product-grid";
 import ShopToolbar from "./shop-toolbar";
 import ShopFilter from "./shop-filter";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Button } from "../ui/button";
 
 type ViewMode = "grid" | "list";
 
@@ -85,15 +86,14 @@ export default function ShopContainer() {
             }}
   onViewChange={setView}
 />
-
-
       <div className="flex gap-10">
         <div className="flex-1">
           <ProductGrid products={paginatedProducts} view={view} />
 
           <div className="flex justify-center gap-2 mt-10">
             {Array.from({ length: totalPages }).map((_, i) => (
-              <button
+              <Button
+                variant="ghost"
                 key={i}
                 onClick={() => setPage(i + 1)}
                 className={`w-10 h-10 border rounded ${
@@ -103,7 +103,7 @@ export default function ShopContainer() {
                 }`}
               >
                 {i + 1}
-              </button>
+              </Button>
             ))}
           </div>
         </div>
@@ -111,9 +111,9 @@ export default function ShopContainer() {
         <aside className="w-72 space-y-10">
           <div className="flex justify-between">
             <h4 className="font-semibold">Filter</h4>
-            <button onClick={clearAll} className="text-sm text-pink-600">
+            <Button variant="outline" onClick={clearAll} className="text-sm text-pink-600">
               Clear All
-            </button>
+            </Button>
           </div>
 
           <ShopFilter

@@ -22,7 +22,6 @@ export default function SideBanners() {
         />
       </Link>
 
-
       <Link href="/shop-details" className="relative block bg-gray-50 rounded-lg overflow-hidden group">
         <div className="absolute inset-0 z-10 p-6 flex flex-col justify-center">
           <span className="text-pink-600 text-sm font-medium mb-1">Popular</span>

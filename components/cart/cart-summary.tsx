@@ -1,5 +1,3 @@
-// lib/cart-context.tsx
-
 'use client';
 
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
@@ -84,11 +82,9 @@ export function CartProvider({ children }: { children: ReactNode }) {
     toast.success('Cart cleared!');
   };
 
-
   const getTotalItems = () => {
     return cart.reduce((total, item) => total + item.quantity, 0);
   };
-
 
   const getTotalPrice = () => {
     return cart.reduce((total, item) => total + item.price * item.quantity, 0);
@@ -110,7 +106,6 @@ export function CartProvider({ children }: { children: ReactNode }) {
     </CartContext.Provider>
   );
 }
-
 
 export function useCart() {
   const context = useContext(CartContext);

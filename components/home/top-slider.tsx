@@ -1,4 +1,3 @@
-
 'use client';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -38,7 +37,7 @@ export default function HeroSlider() {
         modules={[Autoplay, Pagination]}
         spaceBetween={0}
         slidesPerView={1}
-        autoplay={{ delay: 5000 }}
+        autoplay={{ delay: 6000 }}
         pagination={{ clickable: true }}
         loop={true}
         className="h-[520px] "
@@ -53,7 +52,6 @@ export default function HeroSlider() {
                 className="object-cover"
                 priority
               />
-              
               <div className="absolute inset-0 flex items-center">
                 <div className="px-12">
                   <p className="text-gray-600 mb-2">{slide.subtitle}</p>

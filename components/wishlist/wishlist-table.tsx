@@ -1,4 +1,3 @@
-// components/wishlist/wishlist-table.tsx
 import { WishlistRow } from "./wishlist-row";
 
 export function WishlistTable({ items }: { items: any[] }) {

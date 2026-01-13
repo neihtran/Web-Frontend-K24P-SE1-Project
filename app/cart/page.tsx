@@ -3,7 +3,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Trash2 } from "lucide-react";
-
 import { useCart } from "@/components/cart/cart-summary";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";

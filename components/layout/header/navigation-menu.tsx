@@ -1,10 +1,9 @@
-// components/layout/navigation-menu.tsx
-
 'use client';
 
 import { useState } from 'react';
 import Link from 'next/link';
 import { Phone, MapPin, ChevronDown } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 export default function NavigationMenu() {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
@@ -56,7 +55,8 @@ export default function NavigationMenu() {
             onMouseEnter={() => setOpenDropdown(item.label)}
             onMouseLeave={() => setOpenDropdown(null)}
           >
-            <button
+            <Button 
+            variant="ghost"
               className={`flex items-center gap-1 transition-colors ${
                 openDropdown === item.label
                   ? 'text-pink-600'
@@ -65,7 +65,7 @@ export default function NavigationMenu() {
             >
               {item.label}
               <ChevronDown className="w-4 h-4" />
-            </button>
+            </Button>
 
             {/* Dropdown Menu */}
             {openDropdown === item.label && (
@@ -84,14 +84,16 @@ export default function NavigationMenu() {
           </li>
         ))}
 
-        {/* Contact - No Dropdown */}
+        {/* Contact */}
         <li className="h-16 flex items-center">
-          <Link
-            href="/contact"
-            className="text-gray-700 hover:text-pink-600 font-semibold transition-colors"
-          >
-            Contact
-          </Link>
+          <Button variant="ghost" asChild>
+            <Link
+              href="/contact"
+              className="text-gray-700 hover:text-pink-600"
+            >
+              Contact
+            </Link>
+          </Button>
         </li>
       </ul>
 

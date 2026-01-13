@@ -1,9 +1,7 @@
-// components/shared/rating-stars.tsx
-
 import { Star } from 'lucide-react';
 
 interface RatingStarsProps {
-  rating: number; // 0-5
+  rating: number;
   reviews?: number;
 }
 
@@ -24,7 +22,6 @@ export default function RatingStars({ rating, reviews }: RatingStarsProps) {
         ))}
       </div>
       
-     
       {reviews && (
         <span className="text-sm text-gray-500">({reviews})</span>
       )}

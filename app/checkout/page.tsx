@@ -24,31 +24,29 @@ export default function CheckoutPage() {
   }
 }, [isLoggedIn, isReady, router]);
 
-  // Cart empty
-  useEffect(() => {
-    if (cart.length === 0) {
-      router.replace('/cart');
-    }
-  }, [cart, router]);
+  // // Cart empty
+  // useEffect(() => {
+  //   if (cart.length === 0) {
+  //     router.replace('/cart');
+  //   }
+  // }, [cart, router]);
 
   if (!isLoggedIn || cart.length === 0) return null;
 
   return (
-    <div className="container mx-auto py-10">
-      <h1 className="text-2xl font-semibold mb-8">Checkout</h1>
+  <div className="container mx-auto py-10">
+    <h1 className="text-2xl font-semibold mb-8">Checkout</h1>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* Billing */}
-        <div className="lg:col-span-2">
-          <BillingForm />
-        </div>
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="lg:col-span-2">
+        <BillingForm />
+      </div>
 
-        {/* Order */}
-        <div className="space-y-6">
-          <OrderSummary />
-          <PaymentMethod />
-        </div>
+      <div className="space-y-6">
+        <OrderSummary />
+        <PaymentMethod />
       </div>
     </div>
-  );
+  </div>
+);
 }

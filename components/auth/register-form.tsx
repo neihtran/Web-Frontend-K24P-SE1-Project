@@ -77,7 +77,7 @@ const onSubmit = async (data: RegisterForm) => {
 
       {/* PASSWORD */}
       <div>
-        <input
+        <Input
           type="password"
           {...register('password')}
           placeholder="Password"

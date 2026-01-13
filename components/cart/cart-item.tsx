@@ -28,6 +28,7 @@ export default function CartItem({
     <div className="flex gap-4 py-4 border-b">
      
       <Button
+        variant="outline"
         onClick={() => onRemove(item.id)}
         className="flex-shrink-0 w-6 h-6 rounded-full border-2 border-pink-600 text-pink-600 flex items-center justify-center hover:bg-pink-600 hover:text-white transition-colors"
       >
@@ -43,7 +44,6 @@ export default function CartItem({
           className="object-cover rounded"
         />
       </div>
-
 
       <div className="flex-1 min-w-0">
         <Link

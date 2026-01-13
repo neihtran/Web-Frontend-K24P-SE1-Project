@@ -6,10 +6,8 @@ import { Button } from '@/components/ui/button';
 export default function Footer() {
   return (
     <footer className="bg-gray-900 text-gray-300 w-full">
-
       <div className="max-w-7xl mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-    
           <div>
             <Link href="/">
               <Image 
@@ -36,7 +34,6 @@ export default function Footer() {
             </ul>
           </div>
 
-      
           <div>
             <h4 className="text-white font-semibold mb-4">My Account</h4>
             <ul className="space-y-2 text-sm">
@@ -47,8 +44,7 @@ export default function Footer() {
               <li><Link href="#" className="hover:text-white">Terms Condition</Link></li>
             </ul>
           </div>
-
-        
+       
           <div>
             <h4 className="text-white font-semibold mb-4">Get Newsletter</h4>
             <p className="text-sm mb-4">
@@ -67,8 +63,7 @@ export default function Footer() {
           </div>
         </div>
       </div>
-
-  
+ 
       <div className="border-t border-gray-800">
         <div className="container mx-auto px-4 py-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">

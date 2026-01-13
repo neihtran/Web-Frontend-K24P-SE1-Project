@@ -2,6 +2,7 @@
 
 import { Slider } from "@/components/ui/slider";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Button } from "../ui/button";
 
 interface ShopFilterProps {
   categories: string[];
@@ -34,7 +35,8 @@ export default function ShopFilter({
         <ul className="space-y-2 text-sm">
           {categories.map((c) => (
             <li key={c}>
-              <button
+              <Button
+                variant="ghost"
                 type="button"
                 onClick={() => onCategoryChange(c)}
                 className={`hover:text-pink-600 ${
@@ -44,7 +46,7 @@ export default function ShopFilter({
                 }`}
               >
                 {c}
-              </button>
+              </Button>
             </li>
           ))}
         </ul>

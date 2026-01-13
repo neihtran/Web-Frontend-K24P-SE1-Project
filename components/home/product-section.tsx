@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { products } from '@/data/products';
 import ProductCard from '@/components/product/product-card';
+import { Button } from '../ui/button';
 
 export default function ProductSection() {
   const [activeTab, setActiveTab] = useState('all');
@@ -23,11 +24,11 @@ export default function ProductSection() {
             <span className="text-gray-900">Popular </span>
              <span className="text-red-600 font-serif">Products</span>
         </h2>
-        
-    
+            
         <div className="flex justify-end gap-6 mb-12 ">
           {tabs.map((tab) => (
-            <button
+            <Button
+              variant="outline"
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
               className={`text-lg font-medium pb-2 border-b-2 transition-colors ${
@@ -37,10 +38,9 @@ export default function ProductSection() {
               }`}
             >
               {tab.label}
-            </button>
+            </Button>
           ))}
         </div>
-
      
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {displayProducts.map((product) => (

@@ -14,10 +14,10 @@ import {
 import { useCart } from '@/components/cart/cart-summary';
 import { useWishlist } from '@/components/wishlist/wishlist-context';
 import CartSidebar from '@/components/cart/mini-cart';
-import LogoutButton from '@/components/auth/logout-button';
+// import LogoutButton from '@/components/auth/logout-button';
 import { useAuth } from '@/lib/use-auth';
 import { Input } from '@/components/ui/input';
-
+import { Button } from '@/components/ui/button';
 
 export default function Header() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -25,7 +25,7 @@ export default function Header() {
   const [isUserOpen, setIsUserOpen] = useState(false);
   const { getTotalItems } = useCart();
   const { items: wishlistItems } = useWishlist();
-  const { isLoggedIn, user } = useAuth(); 
+  const { isLoggedIn } = useAuth(); 
 
   return (
     <>
@@ -60,7 +60,7 @@ export default function Header() {
             {/* Right Icons */}
             <div className="flex items-center gap-6">
               {/* Language */}
-              <button className="hidden lg:flex items-center gap-2 hover:text-pink-600">
+              <Button variant="ghost" className="hidden lg:flex items-center gap-2 hover:text-pink-600">
                 <Image
                   src="/assets/img/icon/lang-flag.png"
                   alt="EN"
@@ -69,16 +69,17 @@ export default function Header() {
                 />
                 <span className="font-medium">English</span>
                 <ChevronDown className="w-4 h-4" />
-              </button>
+              </Button>
 
               {/* Currency */}
-              <button className="hidden lg:flex items-center gap-1 font-medium hover:text-pink-600">
+              <Button variant="ghost" className="hidden lg:flex items-center gap-1 font-medium hover:text-pink-600">
                 <span>USD</span>
                 <ChevronDown className="w-4 h-4" />
-              </button>
+              </Button>
 
               {/* Cart */}
-              <button
+              <Button
+                variant="ghost"
                 onClick={() => setIsCartOpen(true)}
                 className="relative hover:text-pink-600"
               >
@@ -88,7 +89,7 @@ export default function Header() {
                     {getTotalItems()}
                   </span>
                 )}
-              </button>
+              </Button>
 
               {/* USER */}
               <Link href="/auth" className="hover:text-pink-600">

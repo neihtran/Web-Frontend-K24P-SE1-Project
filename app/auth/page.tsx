@@ -5,7 +5,6 @@ import RegisterForm from "@/components/auth/register-form";
 export default function AuthPage() {
   return (
     <div className="max-w-7xl mx-auto px-4">
-      
       {/* BREADCRUMB */}
       <div className="py-8">
         <nav className="text-sm bg-muted mb-2">
@@ -15,7 +14,6 @@ export default function AuthPage() {
           <span className="mx-2">–</span>
           <span >Sign In</span>
         </nav>
-
         <h1 className="text-3xl font-bold">Sign In</h1>
       </div>
 
@@ -35,7 +33,6 @@ export default function AuthPage() {
             <p className="text-sm text-gray-500 mb-4">
               Your personal data will be used...
             </p>
-
             <LoginForm />
           </div>
         </div>
@@ -56,7 +53,6 @@ export default function AuthPage() {
             <RegisterForm />
           </div>
         </div>
-
       </div>
     </div>
   );

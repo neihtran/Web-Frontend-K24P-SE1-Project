@@ -1,4 +1,3 @@
-
 'use client';
 
 import Link from 'next/link';
@@ -18,14 +17,12 @@ export default function CartSidebar({ isOpen, onClose }: CartSidebarProps) {
 
   return (
     <>
-
       {isOpen && (
         <div
           className="fixed inset-0 bg-black/50 z-50 transition-opacity"
           onClick={onClose}
         />
       )}
-
   
       <div
         className={`fixed top-0 right-0 h-full w-full max-w-md bg-white shadow-2xl z-50 transform transition-transform duration-300 flex flex-col ${
@@ -35,13 +32,13 @@ export default function CartSidebar({ isOpen, onClose }: CartSidebarProps) {
         <div className="flex items-center justify-between px-6 py-4 border-b flex-shrink-0">
           <h2 className="text-xl font-bold text-gray-900">YOUR CART</h2>
           <Button
+            variant="outline"
             onClick={onClose}
             className="p-2 hover:bg-pink-600 rounded-full transition-colors"
           >
             <X className="w-6 h-6" />
           </Button>
         </div>
-
  
         {cart.length === 0 ? (
           <div className="flex-1 flex flex-col items-center justify-center px-6">
@@ -56,7 +53,6 @@ export default function CartSidebar({ isOpen, onClose }: CartSidebarProps) {
           </div>
         ) : (
           <>
-
             <div className="flex-1 overflow-y-auto px-6 py-4">
               {cart.map((item) => (
               <CartItem
@@ -67,7 +63,6 @@ export default function CartSidebar({ isOpen, onClose }: CartSidebarProps) {
          />
               ))}
             </div>
-
            
             <div className="px-6 py-6 border-t bg-white flex-shrink-0">
               <div className="flex items-center justify-between mb-6">
